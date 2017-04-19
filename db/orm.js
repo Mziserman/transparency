@@ -1,11 +1,12 @@
 var elasticsearch = require('elasticsearch');
+var fs = require('fs');
 
 var elasticClient = new elasticsearch.Client({  
     host: 'localhost:9200',
     log: 'info'
 });
 
-var indexName = "randomindex";
+var indexName = "article";
 
 /**
 * Delete an existing index
@@ -56,3 +57,15 @@ function initMapping() {
     });
 }
 exports.initMapping = initMapping;
+
+
+fs.readFile('transparency.json', (err, json) => {
+    var data = JSON.parse(json);
+    elasticClient.bulk({
+        data
+    });
+})
+// return elasticClient.bulk({
+//     body: 
+// })
+
