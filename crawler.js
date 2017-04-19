@@ -1,7 +1,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 var URL = require('url-parse');
-
+var scrap = require('./scrapper')
 
 var baseUrl = "http://www.transparency.org";
 var pagesToVisit = [`${baseUrl}/whatwedo/publications`]
