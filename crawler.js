@@ -8,7 +8,7 @@ var pagesToVisit = [`${baseUrl}/whatwedo/publications`]
 var articles = [];
 
 for (var i = 0; i < 35; i++) {
-  // pagesToVisit.push(`${baseUrl}/whatwedo/publications/P${(i+1)*10}`)
+  pagesToVisit.push(`${baseUrl}/whatwedo/publications/P${(i+1)*10}`)
 }
 // console.log(pagesToVisit)
 
@@ -31,7 +31,6 @@ pagesToVisit.map((page) => {
       })
       if (page == pagesToVisit[pagesToVisit.length - 1]) {
         crawlArticles();
-        console.log(articles);
       }
     }
   })
@@ -39,9 +38,19 @@ pagesToVisit.map((page) => {
 
 function crawlArticles() {
   var articlesToVisit = articles.map(x => baseUrl + x.link);
-  console.log(articlesToVisit);
+  articlesToVisit.map((page) => {
+    request(page, function(error, response, body) {
+      if (error) {
+        console.log("Error: " + error);
+      }
+      if (response.statusCode === 200) {
+        var $ = cheerio.load(body);
 
+        
+        if (page == pagesToVisit[pagesToVisit.length - 1]) {
+          exportDatas();
+        }
+      }
+    })
+  });
 }
-
-// sleep(10);
-console.log(articles)
