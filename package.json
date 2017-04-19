@@ -1,0 +1,17 @@
+{
+  "name": "transparency",
+  "version": "1.0.0",
+  "description": "",
+  "main": "crawler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cheerio": "^0.22.0",
+    "elasticsearch": "^13.0.0-rc2",
+    "request": "^2.81.0",
+    "url-parse": "^1.1.8"
+  }
+}
